@@ -52,5 +52,15 @@ assignedStudents:{
     role:"User",
     min:[1,"Max student must be at least 1"],
 },
+supervisor:{  
+    type:moongoose.Schema.Types.ObjectId,   
+    role:"User",
+    default:null
+},
+project:{  
+    type:moongoose.Schema.Types.ObjectId,   
+    role:"User",
+    default:null
+},
      
 })
