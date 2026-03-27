@@ -1,0 +1,11 @@
+import express from "express";
+import {registerUser,fotgotPssword,logout,getUser,resetPassword} from "../controllers/authController.js";
+import multer from "multer";
+const router=express.Router();
+router.post("/register",registerUser);
+router.post("login",loginUser);
+router.get("/me",getUser);
+router.get("/logout",logout);
+router.post("/password/forgot",fotgotPssword);
+router.put("/passwordreset/:token",resetPassword);
+export default router;
