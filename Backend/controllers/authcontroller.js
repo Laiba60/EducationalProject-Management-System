@@ -32,7 +32,16 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   });
 });
 
-export const loginUser = asyncHandler(async (req, res, next) => {});
+export const loginUser = asyncHandler(async (req, res, next) => {
+    const {email,password,role}=req.body;
+    if(!email || !password || !role)
+    {
+        return next(new ErrorHandler("Please provide all required fields",400));
+    }
+    const user =await User.findOne({email,role}).select("password");
+    
+
+});
 export const getUser = asyncHandler(async (req, res, next) => {});
 export const logout = asyncHandler(async (req, res, next) => {});
 export const forgotPassword = asyncHandler(async (req, res, next) => {});
