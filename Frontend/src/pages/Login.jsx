@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 const Login = () => {
   return (
     <div className="bg-[#f8f9fa] text-[#191c1d] font-body antialiased">
