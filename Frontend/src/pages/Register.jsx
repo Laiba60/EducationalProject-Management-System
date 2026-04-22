@@ -154,7 +154,7 @@ const Register = () => {
                 </div>
               </div>
 
-              {/* Email */}
+              
               <div>
                 <label className="block text-[#4f4539] font-medium mb-1.5 text-sm">Academic Email</label>
                 <div className="relative">
