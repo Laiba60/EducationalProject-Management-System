@@ -17,7 +17,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-      <Route path="/dashboard" element={<PrivateRoute><TeacherDashboard /></PrivateRoute>} />
+     <Route path="/dashboard" element={<TeacherDashboard />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
