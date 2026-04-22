@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// ✅ No "next" parameter — newer Mongoose handles async automatically
+
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) return;
   this.password = await bcrypt.hash(this.password, 12);
