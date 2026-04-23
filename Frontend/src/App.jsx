@@ -20,7 +20,7 @@ const App = () => {
       <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
       <Route path="/dashboard" element={<TeacherDashboard />} />
-      <Route path="/admin" element={<AdminDashboard />} /> {/* ✅ Uppercase Route */}
+      <Route path="/admin" element={<AdminDashboard />} /> 
       <Route path="*" element={<Navigate to="/" replace />} />
        <Route path="/student/create-proposal" element={<CreateProposalPage />} />
     </Routes>

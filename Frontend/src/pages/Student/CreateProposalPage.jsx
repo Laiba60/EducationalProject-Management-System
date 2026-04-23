@@ -1,7 +1,5 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
-
-// Components from components/Student/
 import Sidebar from "../../components/Student/Sidebar";
 import Topbar from "../../components/Student/Topbar";
 import ProposalForm from "../../components/Student/ProposalForm";
@@ -15,14 +13,14 @@ export default function CreateProposalPage() {
       {/* Sidebar */}
       <Sidebar />
 
-      {/* Main Content */}
+      
       <div className="flex-1 flex flex-col">
-        {/* Top Bar */}
+       
         <Topbar />
 
-        {/* Page Body */}
+        
         <main className="flex-1 px-8 py-8 overflow-y-auto">
-          {/* Breadcrumb */}
+          
           <nav className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">
             <span className="hover:text-gray-600 cursor-pointer transition-colors">
               Student Workspace
@@ -38,14 +36,14 @@ export default function CreateProposalPage() {
             and objectives are clearly defined.
           </p>
 
-          {/* 2-Column Grid Layout */}
+          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left: Proposal Form (2 cols) */}
+            
             <div className="lg:col-span-2">
               <ProposalForm />
             </div>
 
-            {/* Right: Side Panels (1 col) */}
+            
             <div className="flex flex-col gap-4">
               <TechnologyStack />
               <SubmissionGuidelines />
