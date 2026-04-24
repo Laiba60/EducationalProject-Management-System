@@ -1,3 +1,4 @@
+import React from "react";
 const StatsCard = ({ title, value, subtitle, subtitleColor = "text-gray-500", icon }) => {
   return (
     <div className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm flex-1 min-w-0">

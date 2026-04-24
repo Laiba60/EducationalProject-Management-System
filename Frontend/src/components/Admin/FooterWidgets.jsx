@@ -1,3 +1,4 @@
+import React from "react";
 export const RecentSystemActions = ({ actions }) => {
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex-1">

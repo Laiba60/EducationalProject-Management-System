@@ -1,9 +1,9 @@
 import React from "react";
-import Sidebar from "../../components/Sidebar";
-import Topbar from "../../components/Topbar";
-import StatsSummary from "./StatsSummary";
-import UsersDirectory from "./UsersDirectory";
-import { RecentSystemActions, SecurityInsight } from "./FooterWidgets";
+import Sidebar from "../../components/admin/Sidebar";
+import Topbar from "../../components/admin/Topbar";
+import StatsSummary from "../../components/admin/StatsSummary";
+import UsersDirectory from "../../components/admin/UsersDirectory";
+import { RecentSystemActions, SecurityInsight } from "../../components/admin/FooterWidgets";
 
 
 

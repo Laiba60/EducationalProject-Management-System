@@ -1,3 +1,4 @@
+import React from "react";
 const roleBadgeStyles = {
   "LEAD FACULTY": "bg-yellow-100 text-yellow-700 border border-yellow-300",
   RESEARCHER: "bg-gray-100 text-gray-600 border border-gray-300",

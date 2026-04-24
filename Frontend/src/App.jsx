@@ -10,6 +10,7 @@ import MyProjects from "./pages/Student/MyProjects";
 import ProgressPage from "./pages/Student/ProgressPage";
 import StudentList from "./pages/Teacher/StudentList";
 import ProjectReview from "./pages/Teacher/ProjectReview";
+import ManageUsers from "./pages/admin/ManageUsers";
 
 const isAuthenticated = () => {
   return !!(localStorage.getItem("token") || sessionStorage.getItem("token"));
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/student/progress" element={<ProgressPage />} />
       <Route path="/teacher/rosters" element={<StudentList />} />
       <Route path="/teacher/review" element={<ProjectReview />} />
+      <Route path="/manage-users" element={<ManageUsers />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
