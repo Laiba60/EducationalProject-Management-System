@@ -9,6 +9,7 @@ import UploadFiles from "./pages/Student/UploadFiles";
 import MyProjects from "./pages/Student/MyProjects"; 
 import ProgressPage from "./pages/Student/ProgressPage";
 import StudentList from "./pages/Teacher/StudentList";
+import ProjectReview from "./pages/Teacher/ProjectReview";
 
 const isAuthenticated = () => {
   return !!(localStorage.getItem("token") || sessionStorage.getItem("token"));
@@ -30,6 +31,7 @@ const App = () => {
       <Route path="/student/projects" element={<MyProjects />} /> 
       <Route path="/student/progress" element={<ProgressPage />} />
       <Route path="/teacher/rosters" element={<StudentList />} />
+      <Route path="/teacher/review" element={<ProjectReview />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
