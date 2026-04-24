@@ -3,9 +3,9 @@ export default function Topbar({ setSidebarOpen }) {
   return (
     <header className="bg-white px-5 md:px-8 py-3.5 flex items-center justify-between border-b border-gray-100 flex-shrink-0 gap-3">
 
-      {/* Left: Hamburger + Search */}
+     
       <div className="flex items-center gap-3 flex-1 min-w-0">
-        {/* Hamburger (mobile) */}
+        
         <button
           className="md:hidden text-[#2e3132] p-1 flex-shrink-0"
           onClick={() => setSidebarOpen(true)}
@@ -18,7 +18,7 @@ export default function Topbar({ setSidebarOpen }) {
           </svg>
         </button>
 
-        {/* Search */}
+        
         <div className="relative w-full max-w-[260px]">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
@@ -34,7 +34,7 @@ export default function Topbar({ setSidebarOpen }) {
         </div>
       </div>
 
-      {/* Right: Icons + User */}
+      
       <div className="flex items-center gap-3 flex-shrink-0">
         {/* Bell */}
         <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors text-gray-500">
