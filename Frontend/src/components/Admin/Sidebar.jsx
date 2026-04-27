@@ -1,5 +1,6 @@
 import React from "react";
 import { LayoutDashboard, FolderOpen, Users, ClipboardCheck, LogOut, PlusCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
@@ -9,8 +10,19 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <aside className="w-44 min-h-screen bg-[#1e1e1e] flex flex-col text-white">
+
       {/* Logo */}
       <div className="flex items-center gap-2 px-4 py-5 border-b border-white/10">
         <div className="w-8 h-8 rounded-md bg-[#b8860b] flex items-center justify-center text-white font-bold text-sm">
@@ -49,11 +61,15 @@ export default function Sidebar() {
 
       {/* Logout */}
       <div className="px-3 pb-5">
-        <button className="w-full flex items-center gap-2 text-gray-400 hover:text-white text-xs py-2 px-2 rounded-md hover:bg-white/5 transition-colors">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-2 text-gray-400 hover:text-white text-xs py-2 px-2 rounded-md hover:bg-white/5 transition-colors"
+        >
           <LogOut size={13} />
           Logout
         </button>
       </div>
+
     </aside>
   );
 }
