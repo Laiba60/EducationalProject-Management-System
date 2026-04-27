@@ -1,16 +1,28 @@
 import React from "react";
-import { LayoutDashboard, FolderOpen, Users, ClipboardCheck, LogOut, PlusCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard,
+  FolderOpen,
+  Users,
+  ClipboardCheck,
+  LogOut,
+  PlusCircle,
+} from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
+// ✅ Har item ka route add kiya
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard", active: true },
-  { icon: FolderOpen, label: "Projects" },
-  { icon: Users, label: "Users" },
-  { icon: ClipboardCheck, label: "Assign" },
+  { icon: LayoutDashboard, label: "Dashboard", path: "/admin/dashboard" },
+  { icon: FolderOpen,      label: "Projects",  path: "/admin/projects"  },
+  { icon: Users,           label: "Users",     path: "/manage-users"    },
+  { icon: ClipboardCheck,  label: "Assign",    path: "/admin/assign"    },
 ];
 
 export default function Sidebar() {
-  const navigate = useNavigate();
+  const navigate  = useNavigate();
+  const location  = useLocation(); // ✅ Current page pata karne ke liye
+
+  // ✅ Active check — current URL se match karo
+  const isActive = (path) => location.pathname === path;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -36,12 +48,13 @@ export default function Sidebar() {
 
       {/* Nav */}
       <nav className="flex-1 py-4 flex flex-col gap-1 px-2">
-        {navItems.map(({ icon: Icon, label, active }) => (
+        {navItems.map(({ icon: Icon, label, path }) => (
           <button
             key={label}
+            onClick={() => navigate(path)} // ✅ Click pe navigate karo
             className={`flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-all w-full text-left ${
-              active
-                ? "bg-white/10 text-white"
+              isActive(path)
+                ? "bg-white/10 text-white"       // ✅ Active page highlight
                 : "text-gray-400 hover:text-white hover:bg-white/5"
             }`}
           >
@@ -53,7 +66,10 @@ export default function Sidebar() {
 
       {/* New Proposal */}
       <div className="px-3 pb-3">
-        <button className="w-full flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#d4a017] text-white text-xs font-semibold py-2.5 rounded-md transition-colors">
+        <button
+          onClick={() => navigate("/student/create-proposal")}
+          className="w-full flex items-center justify-center gap-2 bg-[#b8860b] hover:bg-[#d4a017] text-white text-xs font-semibold py-2.5 rounded-md transition-colors"
+        >
           <PlusCircle size={13} />
           New Proposal
         </button>
