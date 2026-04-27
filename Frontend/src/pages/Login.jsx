@@ -15,27 +15,37 @@ const Login = () => {
     setError('');
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-    try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      const { token, user } = res.data;
-      if (remember) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-      } else {
-        sessionStorage.setItem('token', token);
-        sessionStorage.setItem('user', JSON.stringify(user));
-      }
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally {
-      setLoading(false);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+  try {
+    const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+    const { token, user } = res.data;
+
+    if (remember) {
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('user', JSON.stringify(user));
     }
-  };
+
+    // ✅ Sirf yeh part update kiya — role check karke redirect
+    if (user.role === 'Admin') {
+      navigate('/admin/dashboard');
+    } else if (user.role === 'Teacher') {
+      navigate('/teacher/dashboard');
+    } else {
+      navigate('/student/dashboard');
+    }
+
+  } catch (err) {
+    setError(err.response?.data?.message || 'Login failed. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="bg-[#f8f9fa] text-[#191c1d] antialiased">

@@ -121,7 +121,7 @@ const Register = () => {
               <h2 className="text-xl font-bold text-[#191c1d] mb-2">Create Account</h2>
               <p className="text-[#5d5c70]">
                 Already have an account?{' '}
-                <Link to="/" className="text-[#7e571a] font-semibold hover:underline transition-all">
+                <Link to="/login" className="text-[#7e571a] font-semibold hover:underline transition-all">
                   Login here
                 </Link>
               </p>
