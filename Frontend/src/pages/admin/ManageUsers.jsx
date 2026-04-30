@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar";
 import Topbar from "../../components/admin/Topbar";
 import StatsSummary from "../../components/admin/StatsSummary";
 import UsersDirectory from "../../components/admin/UsersDirectory";
 import { RecentSystemActions, SecurityInsight } from "../../components/admin/FooterWidgets";
+import { fetchUsers } from "../../services/userService";
 
 const statsData = [
   {
@@ -36,40 +38,40 @@ const statsData = [
   },
 ];
 
-const usersData = [
-  {
-    avatar: "https://i.pravatar.cc/40?img=12",
-    name: "Dr. Julian Sterling",
-    joined: "Joined Sept 2021",
-    role: "LEAD FACULTY",
-    email: "j.sterling@curator.edu",
-    department: "Applied Sciences",
-  },
-  {
-    avatar: "https://i.pravatar.cc/40?img=47",
-    name: "Ava Chen-Moore",
-    joined: "Joined Aug 2023",
-    role: "RESEARCHER",
-    email: "a.moore@curator.edu",
-    department: "Data Ethics",
-  },
-  {
-    avatar: "https://i.pravatar.cc/40?img=33",
-    name: "Robert Kim",
-    joined: "Joined Jan 2022",
-    role: "ADMINISTRATOR",
-    email: "r.kim@curator.edu",
-    department: "Registrar's Office",
-  },
-  {
-    avatar: "https://i.pravatar.cc/40?img=44",
-    name: "Sarah Wang",
-    joined: "Joined Oct 2023",
-    role: "STUDENT",
-    email: "s.wang@curator.edu",
-    department: "Computer Science",
-  },
-];
+// const usersData = [
+//   {
+//     avatar: "https://i.pravatar.cc/40?img=12",
+//     name: "Dr. Julian Sterling",
+//     joined: "Joined Sept 2021",
+//     role: "LEAD FACULTY",
+//     email: "j.sterling@curator.edu",
+//     department: "Applied Sciences",
+//   },
+//   {
+//     avatar: "https://i.pravatar.cc/40?img=47",
+//     name: "Ava Chen-Moore",
+//     joined: "Joined Aug 2023",
+//     role: "RESEARCHER",
+//     email: "a.moore@curator.edu",
+//     department: "Data Ethics",
+//   },
+//   {
+//     avatar: "https://i.pravatar.cc/40?img=33",
+//     name: "Robert Kim",
+//     joined: "Joined Jan 2022",
+//     role: "ADMINISTRATOR",
+//     email: "r.kim@curator.edu",
+//     department: "Registrar's Office",
+//   },
+//   {
+//     avatar: "https://i.pravatar.cc/40?img=44",
+//     name: "Sarah Wang",
+//     joined: "Joined Oct 2023",
+//     role: "STUDENT",
+//     email: "s.wang@curator.edu",
+//     department: "Computer Science",
+//   },
+// ];
 
 const systemActions = [
   {
@@ -87,7 +89,9 @@ const systemActions = [
 ];
 
 const ManageUsers = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [usersData, setUsersData] = useState([]);
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
@@ -145,7 +149,7 @@ const ManageUsers = () => {
                 Coordinate and supervise the academic hierarchy of the institution.
               </p>
             </div>
-            <button className="flex items-center justify-center gap-2 bg-[#C8922A] hover:bg-[#b07d22] text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow transition-colors w-full sm:w-auto">
+            <button onClick={() => navigate("/admin/create-user")} className="flex items-center justify-center gap-2 bg-[#C8922A] hover:bg-[#b07d22] text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow transition-colors w-full sm:w-auto">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

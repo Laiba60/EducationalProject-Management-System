@@ -13,6 +13,8 @@ import ProjectReview from "./pages/Teacher/ProjectReview";
 import ManageUsers from "./pages/admin/ManageUsers";
 import AssignTeacher from "./pages/admin/AssignTeacher";
 import AdminProjects from "./pages/admin/AdminProjects";
+import CreateUsers from "./pages/admin/CreateUsers";
+
 
 // ✅ Token check
 const isAuthenticated = () => {
@@ -57,6 +59,10 @@ const App = () => {
       <Route
   path="/admin/projects"
   element={<ProtectedRoute><AdminProjects /></ProtectedRoute>}
+/>
+<Route 
+  path="/admin/create-user" 
+  element={<ProtectedRoute><CreateUsers /></ProtectedRoute>} 
 />
 
       {/* ✅ Teacher Routes */}
