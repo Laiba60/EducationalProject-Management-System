@@ -1,4 +1,5 @@
 import React from "react";
+
 const navItems = [
   {
     name: "Dashboard",
@@ -81,13 +82,17 @@ export default function Sidebar({ activeNav, setActiveNav, sidebarOpen, setSideb
           {navItems.map((item) => (
             <button
               key={item.name}
-              onClick={() => { setActiveNav(item.name); setSidebarOpen(false); }}
+              onClick={() => {
+                setActiveNav(item.name);
+                setSidebarOpen(false);
+              }}
               className={`
                 w-full flex items-center gap-3 px-5 py-[10px] text-[13px] font-medium
                 border-l-[3px] transition-all duration-200 text-left
-                ${activeNav === item.name
-                  ? "bg-[#3a3c3d] border-[#bb8c4b] text-white"
-                  : "border-transparent text-[#8a8b8e] hover:bg-white/5 hover:text-white"
+                ${
+                  activeNav === item.name
+                    ? "bg-[#3a3c3d] border-[#bb8c4b] text-white"
+                    : "border-transparent text-[#8a8b8e] hover:bg-white/5 hover:text-white"
                 }
               `}
             >

@@ -51,23 +51,14 @@ export default function RosterStats() {
           className="bg-white rounded-2xl border border-gray-100 shadow-sm px-5 py-4 flex items-center gap-4"
         >
           {/* Icon */}
-          <div
-            className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${stat.iconBg}`}
-          >
+          <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${stat.iconBg}`}>
             {stat.icon}
           </div>
-
           {/* Text */}
           <div>
-            <p className="text-xs text-gray-400 font-medium mb-0.5">
-              {stat.label}
-            </p>
-            <p className="text-2xl font-bold text-gray-900 leading-tight">
-              {stat.value}
-            </p>
-            <p className={`text-[11px] font-medium mt-0.5 ${stat.subColor}`}>
-              {stat.sub}
-            </p>
+            <p className="text-xs text-gray-400 font-medium mb-0.5">{stat.label}</p>
+            <p className="text-2xl font-bold text-gray-900 leading-tight">{stat.value}</p>
+            <p className={`text-[11px] font-medium mt-0.5 ${stat.subColor}`}>{stat.sub}</p>
           </div>
         </div>
       ))}
