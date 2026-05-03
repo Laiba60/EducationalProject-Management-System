@@ -20,7 +20,7 @@ const seedAdmin = async () => {
     role: 'Admin',
   });
 
-  console.log('✅ Admin created successfully!');
+  console.log(' Admin created successfully!');
   process.exit();
 };
 
