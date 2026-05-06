@@ -15,33 +15,33 @@ const Login = () => {
     setError('');
   };
 
- const handleSubmit = async (e) => {
+// LoginPage.jsx — handleSubmit mein yeh hona chahiye
+
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setError('');
+
   try {
-    const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-    const { token, user } = res.data;
+    const response = await axios.post("http://localhost:5000/api/auth/login", {
+      email: formData.email,       // ✅ formData — aapki actual state
+      password: formData.password, // ✅ formData
+    });
 
-    if (remember) {
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      sessionStorage.setItem('token', token);
-      sessionStorage.setItem('user', JSON.stringify(user));
-    }
+    // Token save karo
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("user", JSON.stringify(response.data.user));
 
-    // ✅ Sirf yeh part update kiya — role check karke redirect
-    if (user.role === 'Admin') {
-      navigate('/admin/dashboard');
-    } else if (user.role === 'Teacher') {
-      navigate('/teacher/dashboard');
+    // Role ke hisaab se redirect
+    if (response.data.user.role === "Admin") {
+      navigate("/admin/manage-users");
     } else {
-      navigate('/student/dashboard');
+      navigate("/dashboard");
     }
 
   } catch (err) {
-    setError(err.response?.data?.message || 'Login failed. Please try again.');
+    console.error("Login failed:", err);
+    setError("Invalid email or password. Please try again.");
   } finally {
     setLoading(false);
   }
