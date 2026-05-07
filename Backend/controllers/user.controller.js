@@ -53,5 +53,22 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+// ✅ GET STATS
+const getUserStats = async (req, res) => {
+  try {
+    const totalUsers    = await User.countDocuments();
+    const totalTeachers = await User.countDocuments({ role: "Teacher" });
+    const totalStudents = await User.countDocuments({ role: "Student" });
 
-module.exports = { getAllUsers, createUser, updateUser, deleteUser };
+    res.json({
+      totalUsers,
+      totalTeachers,
+      totalStudents,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { getAllUsers, createUser, updateUser, deleteUser, getUserStats };
+

@@ -35,3 +35,11 @@ export const deleteUser = async (id) => {
   const res = await axios.delete(`${BASE_URL}/users/${id}`, getAuthHeaders());
   return res.data;
 };
+// ✅ userService.js mein add karo
+export const fetchUserStats = async () => {
+  const res = await axios.get(
+    `${BASE_URL}/users/stats`,
+    getAuthHeaders()
+  );
+  return res.data;
+};
