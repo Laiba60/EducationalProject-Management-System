@@ -10,19 +10,22 @@ const EditUserModal = ({ user, onClose, onUpdated }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      await updateUser(user._id, form);
-      onUpdated();
-      onClose();
-    } catch (err) {
-      setError(err.response?.data?.message || "Update failed");
-    } finally {
-      setLoading(false);
-    }
-  };
+ const handleSubmit = async () => {
+  setLoading(true);
+  setError("");
+  try {
+    // ✅ updateUser ka response capture karo
+    const updatedUser = await updateUser(user._id, form);
+    
+    // ✅ updated user object pass karo
+    onUpdated(updatedUser);
+    onClose();
+  } catch (err) {
+    setError(err.response?.data?.message || "Update failed");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">

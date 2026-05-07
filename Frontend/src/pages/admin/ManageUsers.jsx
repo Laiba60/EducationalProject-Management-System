@@ -60,24 +60,35 @@ const ManageUsers = () => {
   const [usersData, setUsersData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ useEffect ANDAR hai component ke
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const data = await fetchUsers();
-        setUsersData(data);
-      } catch (err) {
-        console.error("Users fetch error:", err);
-        if (err.response?.status === 401) {
-          navigate("/login");
-        }
-      } finally {
-        setLoading(false);
+useEffect(() => {
+  const loadUsers = async () => {
+    try {
+      const data = await fetchUsers();
+      
+      // ✅ YAHAN lagao console — fetchUsers ke BAAD
+      console.log("Raw API data:", data);
+      console.log("Is Array:", Array.isArray(data));
+      
+      const usersArray = Array.isArray(data) 
+        ? data 
+        : data.users || [];
+        
+      setUsersData(usersArray);
+      
+    } catch (err) {
+      console.error("Fetch error:", err);
+      // ✅ Error bhi dekho
+      console.log("Error response:", err.response?.data);
+      
+      if (err.response?.status === 401) {
+        navigate("/login");
       }
-    };
-
-    loadUsers();
-  }, []);
+    } finally {
+      setLoading(false);
+    }
+  };
+  loadUsers();
+}, []);
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { deleteUser } from "../../services/userService";
 import EditUserModal from "./EditUserModal";
 
@@ -37,7 +37,6 @@ const UserRow = ({ user, onEdit, onDelete }) => (
     </td>
     <td className="py-3 px-4">
       <div className="flex items-center gap-2">
-        {/* Edit */}
         <button
           onClick={() => onEdit(user)}
           className="text-gray-400 hover:text-[#C8922A] transition-colors"
@@ -51,7 +50,6 @@ const UserRow = ({ user, onEdit, onDelete }) => (
                  2 0 01.586-1.414z" />
           </svg>
         </button>
-        {/* Delete */}
         <button
           onClick={() => onDelete(user._id)}
           className="text-gray-400 hover:text-red-500 transition-colors"
@@ -128,13 +126,23 @@ const UserCard = ({ user, onEdit, onDelete }) => (
 const UsersDirectory = ({ users, onRefresh }) => {
   const [filterRole, setFilterRole]   = useState("All Roles");
   const [editingUser, setEditingUser] = useState(null);
-  const [localUsers, setLocalUsers]   = useState(users);
+
+  // ✅ FIX 1: Safe initial value
+  const [localUsers, setLocalUsers]   = useState(users || []);
+
+  // ✅ FIX 2: Prop change hone par localUsers sync karo
+  useEffect(() => {
+    if (users && Array.isArray(users)) {
+      setLocalUsers(users);
+    }
+  }, [users]);
 
   const roles = ["All Roles", "Admin", "Teacher", "Student"];
 
+  // ✅ FIX 3: undefined items ko filter karo
   const filtered = filterRole === "All Roles"
-    ? localUsers
-    : localUsers.filter((u) => u.role === filterRole);
+    ? localUsers.filter(Boolean)
+    : localUsers.filter((u) => u && u.role === filterRole);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Is user ko delete karna chahte hain?")) return;
